@@ -16,12 +16,14 @@
 
 function FindProxyForURL(url, host) {
         var i, proxy = [
-		"www.example.org",
-		"www.example.net"
+		"example.org",
+		"*.example.org",
+		"example.net",
+		"*.example.net"
 	];
 
         for (i = 0; i < proxy.length; i = i + 1) {
-                if (localHostOrDomainIs(host, proxy[i])) {
+                if (shExpMatch(host, proxy[i])) {
                         return "SOCKS localhost:9050";
                 }
         }
